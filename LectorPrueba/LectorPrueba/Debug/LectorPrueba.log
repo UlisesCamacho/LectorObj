@@ -1,0 +1,12 @@
+﻿  reader.cpp
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(50): error C2381: 'exit': nueva definición; __declspec(noreturn) o '[[noreturn]]' es diferente
+  c:\gl\glut.h(146): note: vea la declaración de 'exit'
+  Ejecutable.cpp
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(50): error C2381: 'exit': nueva definición; __declspec(noreturn) o '[[noreturn]]' es diferente
+  c:\gl\glut.h(146): note: vea la declaración de 'exit'
+c:\users\ulises\documents\visual studio 2015\projects\lectorprueba\lectorprueba\ejecutable.cpp(22): error C3861: 'AllocConsole': no se encontró el identificador
+c:\users\ulises\documents\visual studio 2015\projects\lectorprueba\lectorprueba\ejecutable.cpp(23): error C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(240): note: vea la declaración de 'freopen'
+c:\users\ulises\documents\visual studio 2015\projects\lectorprueba\lectorprueba\ejecutable.cpp(24): error C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(240): note: vea la declaración de 'freopen'
+  Generando código...

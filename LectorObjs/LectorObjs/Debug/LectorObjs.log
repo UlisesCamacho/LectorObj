@@ -1,0 +1,8 @@
+﻿  LectorObj.cpp
+c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(155): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(160): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(278): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(291): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(326): warning C4018: '<': no coinciden signed/unsigned
+  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Visual Studio 2015\Projects\LectorObjs\Debug\LectorObjs.exe
+  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Visual Studio 2015\Projects\LectorObjs\Debug\LectorObjs.pdb (Partial PDB)

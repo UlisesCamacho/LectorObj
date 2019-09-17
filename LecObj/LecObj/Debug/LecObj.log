@@ -1,0 +1,4 @@
+﻿  Ejecutable.cpp
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(50): error C2381: 'exit': nueva definición; __declspec(noreturn) o '[[noreturn]]' es diferente
+  c:\gl\glut.h(146): note: vea la declaración de 'exit'
+c:\users\ulises\documents\visual studio 2015\projects\lecobj\lecobj\ejecutable.cpp(210): error C2264: 'exit': error en la definición o declaración de función; no se ha llamado a la función
