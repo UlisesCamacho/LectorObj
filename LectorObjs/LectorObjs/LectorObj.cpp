@@ -8,6 +8,7 @@
 #include<GL.H>
 #include <Windows.h>
 #include "LectorObj.h"
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <math.h>
@@ -32,11 +33,13 @@
 * esquina superior izquierda */
 #define ORIGENY 100 
 
+
 // ----------------------------------------------------------
 // Variables globales
 // ----------------------------------------------------------
 double rotate_y = 0;
 double rotate_x = 0;
+int bandera = 0;
 
 
 using namespace std;
@@ -93,6 +96,7 @@ Objeto::Objeto(string nom)
 {
 	archivo = nom;
 }
+Objeto o = Objeto("");
 //en este metodo se genera la lectura del archivo obj original y se crea otro dependiendo de la opcion 
 //donde se guardara el de vertices o face
 void Objeto::imprimir(int opc)
@@ -354,57 +358,62 @@ void Objeto::draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glPolygonMode(GL_FRONT, GL_FILL);
 	glLoadIdentity();
-	
 
-	
+	glRotatef(rotate_x, 1.0, 0.0, 0.0);
+	glRotatef(rotate_y, 0.0, 1.0, 0.0);
 
-	
-	
-	for (int i = 0; i < indicesface.size(); i++)
-	{
-		glBegin(GL_POLYGON);
-		glColor3f(0.0, 1.0, 0.0);
-		glRotatef(rotate_x, 1.0, 0.0, 0.0);
-		glRotatef(rotate_y, 0.0, 1.0, 0.0);
-		glVertex3f(vertices[indicesface[i].ind1].x, vertices[indicesface[i].ind1].y, vertices[indicesface[i].ind1].z);
-		glVertex3f(vertices[indicesface[i].ind2].x, vertices[indicesface[i].ind2].y, vertices[indicesface[i].ind2].z);
-		glVertex3f(vertices[indicesface[i].ind3].x, vertices[indicesface[i].ind3].y, vertices[indicesface[i].ind3].z);
+		for (int i = 0; i < indicesface.size(); i++)
+		{
+			glBegin(GL_POLYGON);
+			glColor3f(0.0, 1.0, 0.0);
 
-		//	cout << float (indicesface[2].ind1);
-		//	cout << indicesface[2].ind2;
-		//	cout << indicesface[2].ind3;
-		//	glVertex3f(vertices[indicesface[0].ind1].x, vertices[indicesface[0].ind1].y, vertices[indicesface[0].ind1].z);
+			glVertex3f(vertices[indicesface[i].ind1].x, vertices[indicesface[i].ind1].y, vertices[indicesface[i].ind1].z);
+			glVertex3f(vertices[indicesface[i].ind2].x, vertices[indicesface[i].ind2].y, vertices[indicesface[i].ind2].z);
+			glVertex3f(vertices[indicesface[i].ind3].x, vertices[indicesface[i].ind3].y, vertices[indicesface[i].ind3].z);
 
-
-
-
-
+			//	cout << float (indicesface[2].ind1);
+			//	cout << indicesface[2].ind2;
+			//	cout << indicesface[2].ind3;
+			//	glVertex3f(vertices[indicesface[0].ind1].x, vertices[indicesface[0].ind1].y, vertices[indicesface[0].ind1].z);
 		glEnd();
-	}
+		}		
 	glFlush();
 	glutSwapBuffers();
-	
-	
+		
 }
 //
 
 //open gl
 void displayMe()
 {
-	
-	string nombre = "";
-	cout << "Dame el nombre del archivo: ";
-	cin >> nombre;
-	nombre = nombre + ".obj";
-	Objeto obj = Objeto(nombre);
-	obj.imprimir(1);//aqui se guardan los datos en los nuevos archivos dependiendo la opcion actualmente los v 
-	obj.GuardaVertices();
-	obj.imprimir(2);//aqui se uardan las caras
-	obj.ObtenIndicesF();
-	//obj.imprimeDatos();
-	obj.draw();
-	
+		
+		if (bandera == 0)
+		{
 
+
+			string nombre = "";
+			cout << "Dame el nombre del archivo: ";
+			cin >> nombre;
+			nombre = nombre + ".obj";
+			o.archivo = nombre;
+			
+		//	Objeto obj = Objeto(nombre);
+			
+			o.imprimir(1);//aqui se guardan los datos en los nuevos archivos dependiendo la opcion actualmente los v 
+			o.GuardaVertices();
+			o.imprimir(2);//aqui se uardan las caras
+			o.ObtenIndicesF();
+			bandera = 1;
+		}
+
+		//obj.imprimeDatos();
+		if (bandera == 1)
+		{
+
+			o.draw();
+			bandera = 1;
+		}
+		
 	
 	
 }
@@ -413,19 +422,31 @@ void specialKeys(int key, int x, int y)
 {
 
 		//  Flecha derecha: aumentar rotación 5 grados
-		if (key == GLUT_KEY_RIGHT)
-			rotate_y += 5;
-
+	if (key == GLUT_KEY_RIGHT)
+	{
+		rotate_y += 5;
+		cout << "ENTRO";
+	}
 		//  Flecha izquierda: disminuir rotación 5 grados
 		else if (key == GLUT_KEY_LEFT)
+		{
 			rotate_y -= 5;
+			cout << "ENTRO";
+		}
+		
 
 		else if (key == GLUT_KEY_UP)
+		{
 			rotate_x += 5;
+			cout << "ENTRO";
+		}
+		
 
 		else if (key == GLUT_KEY_DOWN)
+		{
 			rotate_x -= 5;
-
+			cout << "ENTRO";
+		}
 		//  Solicitar actualización de visualización
 		glutPostRedisplay();
 
@@ -469,11 +490,16 @@ void inicio(void)
 	/* Color de fondo para la ventana
 	* de visualizacion, negro. */
 //	glClearColor(0.0, 0.0, 0.0, 0.0);
+	
 	glViewport(0, 0, ANCHO, ALTO);
 	glMatrixMode(GL_PROJECTION);
+	
 	glLoadIdentity();
 	glOrtho(-8, 5, -8, 5, -1, 1);
 	glMatrixMode(GL_MODELVIEW);
+	glRotatef(rotate_x, 1.0, 0.0, 0.0);
+	glRotatef(rotate_y, 0.0, 1.0, 0.0);
+
 }
 
 
@@ -497,21 +523,25 @@ int main(int argc, char** argv)
 	//opengl
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	//glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(ANCHO,ALTO);
 	glutInitWindowPosition(ORIGENX,ORIGENY);
 	glutCreateWindow("Lector");
+//	glEnable(GL_DEPTH_TEST);//cambio
 	inicio();
 	//glEnable(GL_DEPTH_TEST);
-	
-	glutDisplayFunc(displayMe);
 	glutSpecialFunc(specialKeys);
+	glutDisplayFunc(displayMe);
+	
+	
+	//glutSpecialFunc(specialKeys);
 	
 
 
 	glutMainLoop();
 	
 	return 0;
-	system("pause");
-	getchar();
+//	system("pause");
+//	getchar();
 
 }
