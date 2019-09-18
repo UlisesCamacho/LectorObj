@@ -1,8 +1,8 @@
 ﻿  LectorObj.cpp
-c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(155): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(160): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(278): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(291): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\visual studio 2015\projects\lectorobjs\lectorobjs\lectorobj.cpp(326): warning C4018: '<': no coinciden signed/unsigned
-  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Visual Studio 2015\Projects\LectorObjs\Debug\LectorObjs.exe
-  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Visual Studio 2015\Projects\LectorObjs\Debug\LectorObjs.pdb (Partial PDB)
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\lectorobjs\lectorobjs\lectorobj.cpp(186): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\lectorobjs\lectorobjs\lectorobj.cpp(191): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\lectorobjs\lectorobjs\lectorobj.cpp(309): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\lectorobjs\lectorobjs\lectorobj.cpp(322): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\lectorobjs\lectorobjs\lectorobj.cpp(363): warning C4018: '<': no coinciden signed/unsigned
+  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\LectorObjs\Debug\LectorObjs.exe
+  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\LectorObjs\Debug\LectorObjs.pdb (Partial PDB)

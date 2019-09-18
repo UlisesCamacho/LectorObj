@@ -8,6 +8,36 @@
 #include<GL.H>
 #include <Windows.h>
 #include "LectorObj.h"
+#include <stdio.h>
+#include <stdarg.h>
+#include <math.h>
+#define GL_GLEXT_PROTOTYPES
+#include<glut.h>
+
+
+
+
+//
+/* Ancho de la ventana de visualizacion */
+#define ANCHO 400
+
+/* Alto de la ventana de visualizacion */
+#define ALTO 400 
+
+/* Coordenada X del origen de la ventana,
+* esquina superior izquierda */
+#define ORIGENX 100 
+
+/* Coordenada Y del origen de la ventana,
+* esquina superior izquierda */
+#define ORIGENY 100 
+
+// ----------------------------------------------------------
+// Variables globales
+// ----------------------------------------------------------
+double rotate_y = 0;
+double rotate_x = 0;
+
 
 using namespace std;
 
@@ -53,6 +83,7 @@ public:
 	void imprimir(int);
 	void imprimeDatos();
 	void draw();
+	
 //	int Dibujar(void);//realmente se lee el archivo y se divide 
 						//contructor
 	Objeto(string);
@@ -321,13 +352,20 @@ void Objeto::draw()
 {
 	
 	glClear(GL_COLOR_BUFFER_BIT);
+	glPolygonMode(GL_FRONT, GL_FILL);
+	glLoadIdentity();
+	
 
+	
+
+	
 	
 	for (int i = 0; i < indicesface.size(); i++)
 	{
-		glBegin(GL_TRIANGLES);
-		glColor3f(1.0, 1.0, 3.0);
-
+		glBegin(GL_POLYGON);
+		glColor3f(0.0, 1.0, 0.0);
+		glRotatef(rotate_x, 1.0, 0.0, 0.0);
+		glRotatef(rotate_y, 0.0, 1.0, 0.0);
 		glVertex3f(vertices[indicesface[i].ind1].x, vertices[indicesface[i].ind1].y, vertices[indicesface[i].ind1].z);
 		glVertex3f(vertices[indicesface[i].ind2].x, vertices[indicesface[i].ind2].y, vertices[indicesface[i].ind2].z);
 		glVertex3f(vertices[indicesface[i].ind3].x, vertices[indicesface[i].ind3].y, vertices[indicesface[i].ind3].z);
@@ -344,6 +382,7 @@ void Objeto::draw()
 		glEnd();
 	}
 	glFlush();
+	glutSwapBuffers();
 	
 	
 }
@@ -364,10 +403,77 @@ void displayMe()
 	obj.ObtenIndicesF();
 	//obj.imprimeDatos();
 	obj.draw();
-
 	
 
 	
+	
+}
+
+void specialKeys(int key, int x, int y) 
+{
+
+		//  Flecha derecha: aumentar rotación 5 grados
+		if (key == GLUT_KEY_RIGHT)
+			rotate_y += 5;
+
+		//  Flecha izquierda: disminuir rotación 5 grados
+		else if (key == GLUT_KEY_LEFT)
+			rotate_y -= 5;
+
+		else if (key == GLUT_KEY_UP)
+			rotate_x += 5;
+
+		else if (key == GLUT_KEY_DOWN)
+			rotate_x -= 5;
+
+		//  Solicitar actualización de visualización
+		glutPostRedisplay();
+
+	}
+
+//inici0
+void inicio(void)
+{
+	/* Activamos la matriz de proyeccion. */
+	//glMatrixMode(GL_PROJECTION);
+
+	/* "Reseteamos" esta con la matriz identidad. */
+//	glLoadIdentity();
+
+	/* Plano de proyeccion igual a la ventana
+	* de visualizacion.
+	* Volumen de visualizacion
+	* desde z=-10 hasta z=10.*/
+	//glOrtho(ORIGENX+90, ANCHO-140, ORIGENY+90, ALTO-140, -10, 10);
+	//glOrtho(170, ANCHO-170 , 170 , ALTO-170, -10, 10);
+//	glOrtho(185, ANCHO - 155, 185, ALTO - 155, -10, 10);
+	//glOrtho(-10, 400, -10, 400, -7, 6);
+	//gluOrtho2D(1,1,1,1);
+	//gluOrtho2D(-10, 100, -10, 100);
+//	gluLookAt(0, 5, 5, 0, 0, 0, 0, 1, 0);
+
+	/* Activamos la matriz de modelado/visionado. */
+//	glMatrixMode(GL_MODELVIEW);
+
+	/* La "reseteamos". */
+	//glLoadIdentity();
+
+	/* Nos trasladamos al centro de nuestra
+	* ventana donde siempre dibujaremos el
+	* poligono.
+	* Nos mantenemos en el plano z=5 que se encuentra
+	* dentro del volumen de visualizacion.*/
+
+//	glTranslatef((GLfloat)ANCHO / 2, (GLfloat)ALTO / 2, 5.0);
+
+	/* Color de fondo para la ventana
+	* de visualizacion, negro. */
+//	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glViewport(0, 0, ANCHO, ALTO);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-8, 5, -8, 5, -1, 1);
+	glMatrixMode(GL_MODELVIEW);
 }
 
 
@@ -390,12 +496,17 @@ int main(int argc, char** argv)
 	//o.imprimeDatos();
 	//opengl
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE);
-	glutInitWindowSize(1000, 700);
-	glutInitWindowPosition(100, 100);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize(ANCHO,ALTO);
+	glutInitWindowPosition(ORIGENX,ORIGENY);
+	glutCreateWindow("Lector");
+	inicio();
+	//glEnable(GL_DEPTH_TEST);
 	
-	glutCreateWindow("Hello world!");
 	glutDisplayFunc(displayMe);
+	glutSpecialFunc(specialKeys);
+	
+
 
 	glutMainLoop();
 	
