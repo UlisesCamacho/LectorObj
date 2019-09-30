@@ -1,0 +1,79 @@
+﻿'miprimeropengl.exe' (Win32): 'C:\Users\Ulises\Documents\Visual Studio 2015\Projects\BezierPrueba\Debug\miprimeropengl.exe' cargado. Símbolos cargados.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ntdll.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\kernel32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\KernelBase.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\opengl32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\msvcrt.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\advapi32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\sechost.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\rpcrt4.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\sspicli.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\cryptbase.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\bcryptprimitives.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\user32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\win32u.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\gdi32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\gdi32full.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\vcruntime140d.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\msvcp_win.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Users\Ulises\Documents\Visual Studio 2015\Projects\pruebacubo - copia\miprimeropengl\glut32.dll' cargado. El módulo se compiló sin símbolos.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ucrtbase.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ucrtbased.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\glu32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\winmm.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\winmmbase.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\winmmbase.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\winmmbase.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\winmmbase.dll' descargado
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\winmmbase.dll' descargado
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\cfgmgr32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\imm32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\uxtheme.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\combase.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\msctf.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\oleaut32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\dwmapi.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\crypt32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\msasn1.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\cryptsp.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\kernel.appcore.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\System32\DriverStore\FileRepository\nvdm.inf_amd64_72f356f138a86324\nvinit.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\version.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ig7icd32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\igdusc32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\wtsapi32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\powrprof.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\version.dll' descargado
+'miprimeropengl.exe' (Win32): 'C:\Windows\System32\DriverStore\FileRepository\nvdm.inf_amd64_72f356f138a86324\nvinit.dll' descargado
+El subproceso 0xf18 terminó con código 0 (0x0).
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\TextInputFramework.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\CoreMessaging.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\CoreUIComponents.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\SHCore.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ntmarta.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\WinTypes.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\dxgi.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\d3d11.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ResourcePolicyClient.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ResourcePolicyClient.dll' descargado
+'miprimeropengl.exe' (Win32): 'C:\Windows\System32\DriverStore\FileRepository\nvdm.inf_amd64_72f356f138a86324\nvinit.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\version.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\igd10iumd32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\igd10iumd32.dll' descargado
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\igd10iumd32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\shlwapi.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\bcrypt.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ole32.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ncrypt.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\ntasn1.dll' cargado. No se encuentra el archivo PDB o no se puede abrir.
+'miprimeropengl.exe' (Win32): 'C:\Windows\SysWOW64\version.dll' descargado
+'miprimeropengl.exe' (Win32): 'C:\Windows\System32\DriverStore\FileRepository\nvdm.inf_amd64_72f356f138a86324\nvinit.dll' descargado
+El subproceso 0x2b44 terminó con código 0 (0x0).
+El subproceso 0x2708 terminó con código 0 (0x0).
+El subproceso 0x2fc terminó con código 0 (0x0).
+El subproceso 0xe10 terminó con código 0 (0x0).
+El subproceso 0x2414 terminó con código 0 (0x0).
+El subproceso 0x142c terminó con código 0 (0x0).
+El subproceso 0x145c terminó con código 0 (0x0).
+El subproceso 0x19a4 terminó con código 0 (0x0).
+El programa '[3540] miprimeropengl.exe' terminó con código 0 (0x0).
