@@ -8,16 +8,11 @@
 #include<GL.H>
 #include <Windows.h>
 #include "LectorObj.h"
-
 #include <stdio.h>
 #include <stdarg.h>
 #include <math.h>
 #define GL_GLEXT_PROTOTYPES
 #include<glut.h>
-
-
-
-
 //
 /* Ancho de la ventana de visualizacion */
 #define ANCHO 400
@@ -33,16 +28,104 @@
 * esquina superior izquierda */
 #define ORIGENY 100 
 
-
 // ----------------------------------------------------------
 // Variables globales
 // ----------------------------------------------------------
 double rotate_y = 0;
 double rotate_x = 0;
 int bandera = 0;
-
-
 using namespace std;
+void MultMatriz4x1(GLfloat m[4][4], GLfloat v[4]);
+//bezzier
+int nPuntos = 0;
+
+class Point {
+public:
+	float x, y, z;
+	void setxyz(float x2, float y2, float z2) { x = x2; y = y2; z = z2; }
+	const Point & operator=(const Point &rPoint) {
+		x = rPoint.x;
+		y = rPoint.y;
+		z = rPoint.z;
+		return *this;
+	}
+};
+Point abc[4];
+//Calcular Bezier
+Point drawBezier(Point A, Point B, Point C, Point D, double t) {
+	//VARIABLE AUX PARA PASAR LOS NUEVOS PUNTOS
+	Point P;
+	P.x = pow((1 - t), 3) * A.x + 3 * t * pow((1 - t), 2) * B.x + 3 * (1 - t) * pow(t, 2)* C.x + pow(t, 3)* D.x;
+	P.y = pow((1 - t), 3) * A.y + 3 * t * pow((1 - t), 2) * B.y + 3 * (1 - t) * pow(t, 2)* C.y + pow(t, 3)* D.y;
+	P.z = pow((1 - t), 3) * A.z + 3 * t * pow((1 - t), 2) * B.z + 3 * (1 - t) * pow(t, 2)* C.z + pow(t, 3)* D.z;
+	return P;
+}
+//metodo de dibujado
+void drawLine(Point p1, Point p2) {
+	glBegin(GL_LINES);
+	glColor3f(1.0, 1.0, 1.0);
+	glVertex3f(p1.x, p1.y, p1.z);
+	glVertex3f(p2.x, p2.y, p2.z);
+	glEnd();
+	glFlush();
+}
+void myDisplay() {
+
+	//glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+	for (int i = 0; i <= 4; i++)
+	{
+		switch (i)
+		{
+		case 1:
+			abc[0].setxyz(50, 50, 0);
+			abc[1].setxyz(60, 70, 0);
+			abc[2].setxyz(70, 70, 0);
+			abc[3].setxyz(80, 50, 0);
+			nPuntos = 4;
+			break;
+		case 2:
+			abc[0].setxyz(80, 50, 0);
+			abc[1].setxyz(90, 30, 0);
+			abc[2].setxyz(100, 30, 0);
+			abc[3].setxyz(110, 50, 0);
+			nPuntos = 4;
+			break;
+		case 3:
+			abc[0].setxyz(110, 50, 0);
+			abc[1].setxyz(120, 70, 0);
+			abc[2].setxyz(130, 70, 0);
+			abc[3].setxyz(140, 50, 0);
+			nPuntos = 4;
+			break;
+		case 4:
+			abc[0].setxyz(140, 50, 0);
+			abc[1].setxyz(150, 30, 0);
+			abc[2].setxyz(160, 30, 0);
+			abc[3].setxyz(170, 50, 0);
+			nPuntos = 4;
+			break;
+		default:
+			break;
+		}
+		if (nPuntos == 4) {
+			Point pAnterior = abc[0];
+			// dibuja por medio de linea, e incrementa t lentamente para una curva mas detallada 
+			for (double t = 0.0; t <= 1.0; t += 0.0005) {
+				Point P = drawBezier(abc[0], abc[1], abc[2], abc[3], t);
+				glColor3f(1.0, 1.0, 1.0);
+				drawLine(pAnterior, P);
+				pAnterior = P;
+			}
+			nPuntos = 0;
+		}
+	}
+	glFlush();
+	glutSwapBuffers();
+}
+
+
 
 class faces {
 public:
@@ -99,6 +182,7 @@ Objeto::Objeto(string nom)
 Objeto o = Objeto("");
 //en este metodo se genera la lectura del archivo obj original y se crea otro dependiendo de la opcion 
 //donde se guardara el de vertices o face
+///
 void Objeto::imprimir(int opc)
 {
 	ifstream a;
@@ -133,7 +217,7 @@ void Objeto::imprimir(int opc)
 	while (!a.eof())
 	{
 		getline(a, texto);
-		cout << texto << endl;
+		//cout << texto << endl;
 	}
 	a.close();
 
@@ -251,10 +335,7 @@ void Objeto::GuardaVertices()
 		vertices.push_back(v);
 		pos = pos + 3;
 
-	}
-
-
-	
+	}	
 	//tambien hay que checar cuantos vertices tiene el objeto porque hay que cambiar el numero en el guardado
 	// esta cargado el 8 para el cube
 
@@ -304,7 +385,6 @@ void Objeto::ObtenIndicesF()
 	int valor;
 	for (int i = 0; i < tam; i++)
 	{
-		
 		valorAux = result[i];
 		valor = atoi(valorAux.c_str());
 		valores.push_back(valor);
@@ -319,15 +399,13 @@ void Objeto::ObtenIndicesF()
 		else
 		{
 			aux.push_back(valores[x]);
-		}
-		
-		
+		}	
 	}
-	for (int i = 0; i < aux.size(); i++)
-	{
-		cout << "aux";
-		cout << aux[i] << endl;
-	}
+//	for (int i = 0; i < aux.size(); i++)
+//	{
+//		cout << "aux";
+//		cout << aux[i] << endl;
+//	}
 	//int ta = valores.size();
 	int pos = 0;
 	//ta = ta /3;
@@ -338,8 +416,6 @@ void Objeto::ObtenIndicesF()
 		indicesface.push_back(f);
 		pos = pos + 3; //3
 	}
-
-
 	//la conversion es correcta, solo que cierra valores por ejemplo 999 se convierte 1000
 	//tambien hay que checar cuantos vertices tiene el objeto porque hay que cambiar el numero en el guardado
 	// esta cargado el 8 para el cube
@@ -355,30 +431,79 @@ void Objeto::ObtenIndicesF()
 void Objeto::draw()
 {
 	
-	glClear(GL_COLOR_BUFFER_BIT);
-	glPolygonMode(GL_FRONT, GL_FILL);
-	glLoadIdentity();
-
+//	glClear(GL_COLOR_BUFFER_BIT); //borramos pantalla
+//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glPolygonMode(GL_FRONT, GL_FILL);
+	//glLoadIdentity();
 	glRotatef(rotate_x, 1.0, 0.0, 0.0);
 	glRotatef(rotate_y, 0.0, 1.0, 0.0);
+	//figura apoyo
+	glBegin(GL_LINES);
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(0.5, 0.7, 0.0);
+	glEnd();
+		//PUNTOS DE REFERENCIA
+		abc[0].setxyz(-0.992906,0.010544,0.895358);
+		abc[1].setxyz(-0.490000,1.0,0.895358);
+		abc[2].setxyz(-0.5,1.0, 0.895358);
+		abc[3].setxyz(0.0,0.0, 0.895358);
+		GLfloat vPuntos[4];
+		GLfloat vPuntos1[4];
+		GLfloat vPuntos2[4];
+		Point pAnterior = abc[0];
+		GLfloat vBezier[4];
+		//GLfloat MFINAL[4][4];
+		// dibuja por medio de linea, e incrementa t lentamente para una curva mas detallada 
+		for (double t = 0.0; t <= 1.0; t += 0.005) {
+			Point P = drawBezier(abc[0], abc[1], abc[2], abc[3], t);
+		//	getchar();
+			drawLine(pAnterior, P);
+			pAnterior = P;
+			vBezier[0] = P.x;
+			vBezier[1] = P.y;
+			vBezier[2] = P.z;
+			vBezier[3] = 1;
+			GLfloat MT[4][4] = {
+				{ 1.0f,0.0f,0.0f,vBezier[0] },
+				{ 0.0f,1.0f,0.0f,vBezier[1] },
+				{ 0.0f,0.0f,1.0f,vBezier[2] },
+				{ 0.0f,0.0f,0.0f,vBezier[3]} };
+			glClear(GL_COLOR_BUFFER_BIT);
+			glLoadIdentity();
+			for (int i = 0; i < indicesface.size(); i++)
+			{
+				
+				vPuntos[0] = vertices[indicesface[i].ind1].x;
+				vPuntos[1] = vertices[indicesface[i].ind1].y;
+				vPuntos[2] = vertices[indicesface[i].ind1].z;
+				vPuntos[3] = 1.0f;
+				
+				vPuntos1[0] = vertices[indicesface[i].ind2].x;
+				vPuntos1[1] = vertices[indicesface[i].ind2].y;
+				vPuntos1[2] = vertices[indicesface[i].ind2].z;
+				vPuntos1[3] = 1.0f;
+				
+				vPuntos2[0] = vertices[indicesface[i].ind3].x;
+				vPuntos2[1] = vertices[indicesface[i].ind3].y;
+				vPuntos2[2] = vertices[indicesface[i].ind3].z;
+				vPuntos2[3] = 1.0f;
+				
+				MultMatriz4x1(MT, vPuntos2);
+				MultMatriz4x1(MT, vPuntos);
+				MultMatriz4x1(MT, vPuntos1);
 
-		for (int i = 0; i < indicesface.size(); i++)
-		{
-			glBegin(GL_POLYGON);
-			glColor3f(0.0, 1.0, 0.0);
-
-			glVertex3f(vertices[indicesface[i].ind1].x, vertices[indicesface[i].ind1].y, vertices[indicesface[i].ind1].z);
-			glVertex3f(vertices[indicesface[i].ind2].x, vertices[indicesface[i].ind2].y, vertices[indicesface[i].ind2].z);
-			glVertex3f(vertices[indicesface[i].ind3].x, vertices[indicesface[i].ind3].y, vertices[indicesface[i].ind3].z);
-
-			//	cout << float (indicesface[2].ind1);
-			//	cout << indicesface[2].ind2;
-			//	cout << indicesface[2].ind3;
-			//	glVertex3f(vertices[indicesface[0].ind1].x, vertices[indicesface[0].ind1].y, vertices[indicesface[0].ind1].z);
-		glEnd();
-		}		
-	glFlush();
-	glutSwapBuffers();
+				
+				glBegin(GL_POLYGON);
+				glColor3f(0.0, 1.0, 0.0);
+				glVertex3f(vPuntos[0],vPuntos[1],vPuntos[2]);
+				glVertex3f(vPuntos1[0],vPuntos1[1],vPuntos1[2]);
+				glVertex3f(vPuntos2[0],vPuntos2[1],vPuntos2[2]);
+				glEnd();
+			}
+		}
+		glFlush();
+		glutSwapBuffers();
 		
 }
 //
@@ -389,16 +514,12 @@ void displayMe()
 		
 		if (bandera == 0)
 		{
-
-
 			string nombre = "";
 			cout << "Dame el nombre del archivo: ";
 			cin >> nombre;
 			nombre = nombre + ".obj";
-			o.archivo = nombre;
-			
-		//	Objeto obj = Objeto(nombre);
-			
+			//string nombre = "balon2.0.obj";
+			o.archivo = nombre;			
 			o.imprimir(1);//aqui se guardan los datos en los nuevos archivos dependiendo la opcion actualmente los v 
 			o.GuardaVertices();
 			o.imprimir(2);//aqui se uardan las caras
@@ -409,13 +530,9 @@ void displayMe()
 		//obj.imprimeDatos();
 		if (bandera == 1)
 		{
-
 			o.draw();
 			bandera = 1;
 		}
-		
-	
-	
 }
 
 void specialKeys(int key, int x, int y) 
@@ -455,93 +572,62 @@ void specialKeys(int key, int x, int y)
 //inici0
 void inicio(void)
 {
-	/* Activamos la matriz de proyeccion. */
-	//glMatrixMode(GL_PROJECTION);
-
-	/* "Reseteamos" esta con la matriz identidad. */
-//	glLoadIdentity();
-
-	/* Plano de proyeccion igual a la ventana
-	* de visualizacion.
-	* Volumen de visualizacion
-	* desde z=-10 hasta z=10.*/
-	//glOrtho(ORIGENX+90, ANCHO-140, ORIGENY+90, ALTO-140, -10, 10);
-	//glOrtho(170, ANCHO-170 , 170 , ALTO-170, -10, 10);
-//	glOrtho(185, ANCHO - 155, 185, ALTO - 155, -10, 10);
-	//glOrtho(-10, 400, -10, 400, -7, 6);
-	//gluOrtho2D(1,1,1,1);
-	//gluOrtho2D(-10, 100, -10, 100);
-//	gluLookAt(0, 5, 5, 0, 0, 0, 0, 1, 0);
-
-	/* Activamos la matriz de modelado/visionado. */
-//	glMatrixMode(GL_MODELVIEW);
-
-	/* La "reseteamos". */
-	//glLoadIdentity();
-
-	/* Nos trasladamos al centro de nuestra
-	* ventana donde siempre dibujaremos el
-	* poligono.
-	* Nos mantenemos en el plano z=5 que se encuentra
-	* dentro del volumen de visualizacion.*/
-
-//	glTranslatef((GLfloat)ANCHO / 2, (GLfloat)ALTO / 2, 5.0);
-
-	/* Color de fondo para la ventana
-	* de visualizacion, negro. */
-//	glClearColor(0.0, 0.0, 0.0, 0.0);
 	
-	glViewport(0, 0, ANCHO, ALTO);
-	glMatrixMode(GL_PROJECTION);
-	
-	glLoadIdentity();
-	glOrtho(-8, 5, -8, 5, -1, 1);
 	glMatrixMode(GL_MODELVIEW);
-	glRotatef(rotate_x, 1.0, 0.0, 0.0);
-	glRotatef(rotate_y, 0.0, 1.0, 0.0);
+	glLoadIdentity();
+	gluLookAt(0.0, 0.0,1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glFrustum(-ANCHO/ALTO, ANCHO / ALTO, -ANCHO / ALTO, ANCHO / ALTO, -1.0, 1.0);
 
 }
-
-
-
 int main(int argc, char** argv)
 {
-	
-	
-	
-	//string nombre="";
-	//cout << "Dame el nombre del archivo: ";
-	//cin >> nombre;
-	//nombre = nombre + ".obj";
-	//Objeto o = Objeto(nombre);
-	//opcion 1=v 2=f  3=vn
-	//o.imprimir(1);//aqui se guardan los datos en los nuevos archivos dependiendo la opcion actualmente los v 
-	//o.GuardaVertices();
-	//o.imprimir(2);//aqui se uardan las caras
-	//o.ObtenIndicesF();
-	//o.imprimeDatos();
-	//opengl
+		
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	//glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(ANCHO,ALTO);
-	glutInitWindowPosition(ORIGENX,ORIGENY);
+	glutInitWindowSize(ANCHO*2,ALTO*2);
 	glutCreateWindow("Lector");
-//	glEnable(GL_DEPTH_TEST);//cambio
 	inicio();
-	//glEnable(GL_DEPTH_TEST);
 	glutSpecialFunc(specialKeys);
 	glutDisplayFunc(displayMe);
-	
-	
-	//glutSpecialFunc(specialKeys);
-	
-
-
-	glutMainLoop();
+	glutMainLoop();	
 	
 	return 0;
-//	system("pause");
-//	getchar();
 
 }
+
+void MultMatriz4x4(GLfloat m1[4][4], GLfloat m2[4][4])
+{
+	GLfloat mr[4][4];
+	mr[0][0] = m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0] + m1[0][2] * m2[2][0] + m1[0][3] * m2[3][0];
+	mr[0][1] = m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1] + m1[0][2] * m2[2][1] + m1[0][3] * m2[3][1];
+	mr[0][2] = m1[0][0] * m2[0][2] + m1[0][1] * m2[1][2] + m1[0][2] * m2[2][2] + m1[0][3] * m2[3][2];
+	mr[0][3] = m1[0][0] * m2[0][3] + m1[0][1] * m2[1][3] + m1[0][2] * m2[2][3] + m1[0][3] * m2[3][3];
+
+	mr[1][0] = m1[1][0] * m2[0][0] + m1[1][1] * m2[1][0] + m1[1][2] * m2[2][0] + m1[1][3] * m2[3][0];
+	mr[1][1] = m1[1][0] * m2[0][1] + m1[1][1] * m2[1][1] + m1[1][2] * m2[2][1] + m1[1][3] * m2[3][1];
+	mr[1][2] = m1[1][0] * m2[0][2] + m1[1][1] * m2[1][2] + m1[1][2] * m2[2][2] + m1[1][3] * m2[3][2];
+	mr[1][3] = m1[1][0] * m2[0][3] + m1[1][1] * m2[1][3] + m1[1][2] * m2[2][3] + m1[1][3] * m2[3][3];
+
+	mr[2][0] = m1[2][0] * m2[0][0] + m1[2][1] * m2[1][0] + m1[2][2] * m2[2][0] + m1[2][3] * m2[3][0];
+	mr[2][1] = m1[2][0] * m2[0][1] + m1[2][1] * m2[1][1] + m1[2][2] * m2[2][1] + m1[2][3] * m2[3][1];
+	mr[2][2] = m1[2][0] * m2[0][2] + m1[2][1] * m2[1][2] + m1[2][2] * m2[2][2] + m1[2][3] * m2[3][2];
+	mr[2][3] = m1[2][0] * m2[0][3] + m1[2][1] * m2[1][3] + m1[2][2] * m2[2][3] + m1[2][3] * m2[3][3];
+
+	mr[3][0] = m1[3][0] * m2[0][0] + m1[3][1] * m2[1][0] + m1[3][2] * m2[2][0] + m1[3][3] * m2[3][0];
+	mr[3][1] = m1[3][0] * m2[0][1] + m1[3][1] * m2[1][1] + m1[3][2] * m2[2][1] + m1[3][3] * m2[3][1];
+	mr[3][2] = m1[3][0] * m2[0][2] + m1[3][1] * m2[1][2] + m1[3][2] * m2[2][2] + m1[3][3] * m2[3][2];
+	mr[3][3] = m1[3][0] * m2[0][3] + m1[3][1] * m2[1][3] + m1[3][2] * m2[2][3] + m1[3][3] * m2[3][3];
+}
+void MultMatriz4x1(GLfloat m[4][4], GLfloat v[4])
+{
+	//GLfloat vr[4];
+	v[0] = m[0][0] * v[0] + m[0][1] * v[1] + m[0][2] * v[2] + m[0][3] * v[3];
+	v[1] = m[1][0] * v[0] + m[1][1] * v[1] + m[1][2] * v[2] + m[1][3] * v[3];
+	v[2] = m[2][0] * v[0] + m[2][1] * v[1] + m[2][2] * v[2] + m[2][3] * v[3];
+	v[3] = m[3][0] * v[0] + m[3][1] * v[1] + m[3][2] * v[2] + m[3][3] * v[3];
+}
+
+
+//
