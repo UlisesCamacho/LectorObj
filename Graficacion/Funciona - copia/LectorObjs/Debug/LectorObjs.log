@@ -1,0 +1,7 @@
+﻿  LectorObj.cpp
+c:\users\ulises\desktop\funciona - copia\lectorobjs\lectorobj.cpp(219): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\funciona - copia\lectorobjs\lectorobj.cpp(224): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\funciona - copia\lectorobjs\lectorobj.cpp(338): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\funciona - copia\lectorobjs\lectorobj.cpp(453): warning C4018: '<': no coinciden signed/unsigned
+  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\Funciona - copia\Debug\LectorObjs.exe
+  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\Funciona - copia\Debug\LectorObjs.pdb (Partial PDB)
