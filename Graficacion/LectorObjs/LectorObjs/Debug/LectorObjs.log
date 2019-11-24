@@ -1,8 +1,2 @@
-﻿  LectorObj.cpp
-c:\users\ulises\desktop\lectorobjs\lectorobjs\lectorobj.cpp(217): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\desktop\lectorobjs\lectorobjs\lectorobj.cpp(222): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\desktop\lectorobjs\lectorobjs\lectorobj.cpp(336): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\desktop\lectorobjs\lectorobjs\lectorobj.cpp(406): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\desktop\lectorobjs\lectorobjs\lectorobj.cpp(385): warning C4101: 'vBezier': variable local sin referencia
-  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\LectorObjs\Debug\LectorObjs.exe
-  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\LectorObjs\Debug\LectorObjs.pdb (Partial PDB)
+﻿  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\Graficacion\LectorObjs\Debug\LectorObjs.exe
+  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\Graficacion\LectorObjs\Debug\LectorObjs.pdb (Partial PDB)

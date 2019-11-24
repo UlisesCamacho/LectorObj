@@ -63,69 +63,12 @@ Point drawBezier(Point A, Point B, Point C, Point D, double t) {
 //metodo de dibujado
 void drawLine(Point p1, Point p2) {
 	glBegin(GL_LINES);
-	glColor3f(1.0, 1.0, 1.0);
+	glColor3f(0.0, 1.0, 0.0);
 	glVertex3f(p1.x, p1.y, p1.z);
 	glVertex3f(p2.x, p2.y, p2.z);
 	glEnd();
 	glFlush();
 }
-void myDisplay() {
-
-	//glClear(GL_COLOR_BUFFER_BIT);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
-	for (int i = 0; i <= 4; i++)
-	{
-		switch (i)
-		{
-		case 1:
-			abc[0].setxyz(50, 50, 0);
-			abc[1].setxyz(60, 70, 0);
-			abc[2].setxyz(70, 70, 0);
-			abc[3].setxyz(80, 50, 0);
-			nPuntos = 4;
-			break;
-		case 2:
-			abc[0].setxyz(80, 50, 0);
-			abc[1].setxyz(90, 30, 0);
-			abc[2].setxyz(100, 30, 0);
-			abc[3].setxyz(110, 50, 0);
-			nPuntos = 4;
-			break;
-		case 3:
-			abc[0].setxyz(110, 50, 0);
-			abc[1].setxyz(120, 70, 0);
-			abc[2].setxyz(130, 70, 0);
-			abc[3].setxyz(140, 50, 0);
-			nPuntos = 4;
-			break;
-		case 4:
-			abc[0].setxyz(140, 50, 0);
-			abc[1].setxyz(150, 30, 0);
-			abc[2].setxyz(160, 30, 0);
-			abc[3].setxyz(170, 50, 0);
-			nPuntos = 4;
-			break;
-		default:
-			break;
-		}
-		if (nPuntos == 4) {
-			Point pAnterior = abc[0];
-			// dibuja por medio de linea, e incrementa t lentamente para una curva mas detallada 
-			for (double t = 0.0; t <= 1.0; t += 0.0005) {
-				Point P = drawBezier(abc[0], abc[1], abc[2], abc[3], t);
-				glColor3f(1.0, 1.0, 1.0);
-				drawLine(pAnterior, P);
-				pAnterior = P;
-			}
-			nPuntos = 0;
-		}
-	}
-	glFlush();
-	glutSwapBuffers();
-}
-
-
 
 class faces {
 public:
@@ -437,12 +380,6 @@ void Objeto::draw()
 	//glLoadIdentity();
 	glRotatef(rotate_x, 1.0, 0.0, 0.0);
 	glRotatef(rotate_y, 0.0, 1.0, 0.0);
-	//figura apoyo
-	glBegin(GL_LINES);
-	glColor3f(0.0, 1.0, 0.0);
-	glVertex3f(0, 0, 0);
-	glVertex3f(0.5, 0.7, 0.0);
-	glEnd();
 		//PUNTOS DE REFERENCIA
 		abc[0].setxyz(-0.992906,0.010544,0.895358);
 		abc[1].setxyz(-0.490000,1.0,0.895358);
@@ -459,11 +396,11 @@ void Objeto::draw()
 			Point P = drawBezier(abc[0], abc[1], abc[2], abc[3], t);
 		//	getchar();
 			drawLine(pAnterior, P);
-			pAnterior = P;
 			vBezier[0] = P.x;
 			vBezier[1] = P.y;
 			vBezier[2] = P.z;
 			vBezier[3] = 1;
+			pAnterior = P;
 			GLfloat MT[4][4] = {
 				{ 1.0f,0.0f,0.0f,vBezier[0] },
 				{ 0.0f,1.0f,0.0f,vBezier[1] },

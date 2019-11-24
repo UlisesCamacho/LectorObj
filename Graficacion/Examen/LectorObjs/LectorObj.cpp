@@ -484,6 +484,7 @@ void Objeto::draw()
 		pivote2[0] = 0.0f - Tl3x[0];
 		pivote2[1] = 0.0f - Tl3y[0];
 		pivote2[2] = 0.0f - Tl3z[0];
+
 		glClear(GL_COLOR_BUFFER_BIT);
 		glLoadIdentity();
 		glBegin(GL_LINES);
@@ -493,6 +494,9 @@ void Objeto::draw()
 		glVertex3f(1.0, 0.0, 0.0);
 		glVertex3f(-1.0, 0.0, 0.0);
 		glEnd();
+
+		cout << o.indicesface.size();
+		
 		for (int i = 0; i < indicesface.size(); i++)
 		{
 

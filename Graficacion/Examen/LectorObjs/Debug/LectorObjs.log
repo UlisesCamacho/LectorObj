@@ -1,11 +1,11 @@
 ﻿  LectorObj.cpp
-c:\users\ulises\desktop\graficacion\examen\lectorobjs\lectorobj.cpp(221): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\desktop\graficacion\examen\lectorobjs\lectorobj.cpp(226): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\desktop\graficacion\examen\lectorobjs\lectorobj.cpp(340): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\desktop\graficacion\examen\lectorobjs\lectorobj.cpp(438): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\desktop\graficacion\examen\lectorobjs\lectorobj.cpp(496): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\desktop\graficacion\examen\lectorobjs\lectorobj.cpp(391): warning C4101: 'puntos2': variable local sin referencia
-c:\users\ulises\desktop\graficacion\examen\lectorobjs\lectorobj.cpp(390): warning C4101: 'puntos1': variable local sin referencia
-c:\users\ulises\desktop\graficacion\examen\lectorobjs\lectorobj.cpp(389): warning C4101: 'puntos': variable local sin referencia
-  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\Graficacion\Examen\Debug\LectorObjs.exe
-  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\Graficacion\Examen\Debug\LectorObjs.pdb (Partial PDB)
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\graficacion\examen\lectorobjs\lectorobj.cpp(221): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\graficacion\examen\lectorobjs\lectorobj.cpp(226): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\graficacion\examen\lectorobjs\lectorobj.cpp(340): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\graficacion\examen\lectorobjs\lectorobj.cpp(438): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\graficacion\examen\lectorobjs\lectorobj.cpp(500): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\graficacion\examen\lectorobjs\lectorobj.cpp(391): warning C4101: 'puntos2': variable local sin referencia
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\graficacion\examen\lectorobjs\lectorobj.cpp(390): warning C4101: 'puntos1': variable local sin referencia
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\graficacion\examen\lectorobjs\lectorobj.cpp(389): warning C4101: 'puntos': variable local sin referencia
+  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\Graficacion\Examen\Debug\LectorObjs.exe
+  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\Graficacion\Examen\Debug\LectorObjs.pdb (Partial PDB)

@@ -1,2 +1,7 @@
-﻿  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\LectorObjs\Debug\LectorObjs.exe
+﻿  LectorObj.cpp
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\lectorobjs\lectorobjs\lectorobj.cpp(217): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\lectorobjs\lectorobjs\lectorobj.cpp(222): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\lectorobjs\lectorobjs\lectorobj.cpp(336): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\lectorobjs\lectorobjs\lectorobj.cpp(411): warning C4018: '<': no coinciden signed/unsigned
+  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\LectorObjs\Debug\LectorObjs.exe
   LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\LectorObjs\Debug\LectorObjs.pdb (Partial PDB)

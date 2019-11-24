@@ -1,12 +1,2 @@
-﻿  LectorObj.cpp
-c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\funciona\lectorobjs\lectorobj.cpp(221): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\funciona\lectorobjs\lectorobj.cpp(226): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\funciona\lectorobjs\lectorobj.cpp(340): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\funciona\lectorobjs\lectorobj.cpp(449): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\funciona\lectorobjs\lectorobj.cpp(481): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\funciona\lectorobjs\lectorobj.cpp(526): warning C4018: '<': no coinciden signed/unsigned
-c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\funciona\lectorobjs\lectorobj.cpp(398): warning C4101: 'puntos2': variable local sin referencia
-c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\funciona\lectorobjs\lectorobj.cpp(397): warning C4101: 'puntos1': variable local sin referencia
-c:\users\ulises\documents\ulises\graficacion por computadora\lectorobj\funciona\lectorobjs\lectorobj.cpp(396): warning C4101: 'puntos': variable local sin referencia
-  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\Funciona\Debug\LectorObjs.exe
-  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\Funciona\Debug\LectorObjs.pdb (Partial PDB)
+﻿  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\Examen\Debug\LectorObjs.exe
+  LectorObjs.vcxproj -> C:\Users\Ulises\Documents\Ulises\Graficacion Por Computadora\LectorObj\Examen\Debug\LectorObjs.pdb (Partial PDB)
