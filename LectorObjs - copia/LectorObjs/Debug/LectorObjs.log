@@ -1,0 +1,10 @@
+﻿  LectorObj.cpp
+c:\users\ulises\desktop\proyecto\lectorobjs - copia\lectorobjs\lectorobj.cpp(228): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\lectorobjs - copia\lectorobjs\lectorobj.cpp(233): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\lectorobjs - copia\lectorobjs\lectorobj.cpp(347): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\lectorobjs - copia\lectorobjs\lectorobj.cpp(561): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\lectorobjs - copia\lectorobjs\lectorobj.cpp(611): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\lectorobjs - copia\lectorobjs\lectorobj.cpp(424): warning C4101: 'n2': variable local sin referencia
+c:\users\ulises\desktop\proyecto\lectorobjs - copia\lectorobjs\lectorobj.cpp(424): warning C4101: 'n': variable local sin referencia
+  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\Proyecto\LectorObjs - copia\Debug\LectorObjs.exe
+  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\Proyecto\LectorObjs - copia\Debug\LectorObjs.pdb (Partial PDB)
