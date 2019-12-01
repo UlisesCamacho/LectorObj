@@ -14,9 +14,6 @@
 #define GL_GLEXT_PROTOTYPES
 #include<glut.h>
 #include<time.h>
-
-
-
 //
 /* Ancho de la ventana de visualizacion */
 #define ANCHO 400
@@ -38,12 +35,21 @@
 double rotate_y = 0;
 double rotate_x = 0;
 int bandera = 0;
+
+//bandera buena
+int  cambio = 0;
 using namespace std;
 void MultMatriz4x1(GLfloat m[4][4], GLfloat v[4]);
 //bezzier
 int nPuntos = 0;
 GLfloat anguloCuboX = 0.0f;
 GLfloat anguloCuboY = 0.0f;
+
+//rgba
+GLfloat R = 0.0f;
+GLfloat G = 0.0f;
+GLfloat B = 0.0f;
+GLfloat A = 0.0f;
 float LightPos[] = { 1.0f, 0.5f, 1.0f, 0.0f };   // Light Position
 float LightAmb[] = { 0.2f, 0.2f, 0.2f, 1.0f };   // Ambient Light Values
 float LightDif[] = { 1.0f, 1.0f, 1.0f, 1.0f };   // Diffuse Light Values
@@ -79,7 +85,6 @@ void drawLine(Point p1, Point p2) {
 	glEnd();
 	glFlush();
 }
-
 class faces {
 public:
 	//atributos 
@@ -196,7 +201,6 @@ void Objeto::imprimir(int opc)
 				cp1 = cp[i];
 				if (verifica.compare(cp1) == 0)
 				{
-					//cout << texto << endl;
 					linea.push_back(texto);
 					cont = cont + 1;
 				}
@@ -220,7 +224,6 @@ void Objeto::imprimir(int opc)
 	arch.close();
 	a.close();
 }
-
 void Objeto::imprimeDatos()
 {
 	cout << "<---" << archivo << "--->" << endl;
@@ -236,7 +239,6 @@ void Objeto::imprimeDatos()
 	}
 	
 }
-
 void Objeto::GuardaVertices()
 {
 
@@ -292,14 +294,6 @@ void Objeto::GuardaVertices()
 	}	
 	//tambien hay que checar cuantos vertices tiene el objeto porque hay que cambiar el numero en el guardado
 	// esta cargado el 8 para el cube
-
-	/*impresion de los flotantes
-	int tam2 = valores.size();
-	for (int i = 0; i < tam2; i++)
-	{
-	cout << valores[i] << endl;
-	}*/
-
 }
 /*---------------------------------empezamos con los indices de las caras f------------------------------*/
 void Objeto::ObtenIndicesF()
@@ -348,21 +342,15 @@ void Objeto::ObtenIndicesF()
 	{
 		if (valores[x]==0)
 		{
-			cout << valores[x] << endl;
+			//cout << valores[x] << endl;
 		}
 		else
 		{
 			aux.push_back(valores[x]);
 		}	
 	}
-//	for (int i = 0; i < aux.size(); i++)
-//	{
-//		cout << "aux";
-//		cout << aux[i] << endl;
-//	}
-	//int ta = valores.size();
 	int pos = 0;
-	//ta = ta /3;
+	
 	for (int i = 0; i < cont; i++)
 	{
 
@@ -384,17 +372,12 @@ void Objeto::ObtenIndicesF()
 }
 void Objeto::draw()
 {
-	
-	//iluminacion
-	/* Activo la fuente de luz */
-
-
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 	//iluminacion
-	glClearColor(0.0, 0.0, 0.0, 0.0);
-	glShadeModel(GL_SMOOTH);
+	glClearColor(R, G, B, 1.0);
+	glShadeModel(GL_FLAT);
 	glCullFace(GL_BACK);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
@@ -408,19 +391,22 @@ void Objeto::draw()
 	glEnable(GL_LIGHTING);
 
 	/* Propiedades del material del Objeto*/
-	GLfloat mat_ambient[] = { 1.0,0.5,0.0,0.0 };
-	GLfloat mat_diffuse[] = { 1.0, 0.7f, 0.0f, 0.0f };
+	GLfloat mat_ambient[] = { 0.04f, 0.28f, 0.36f, 1.0f };
+	GLfloat mat_diffuse[] = { 0.05f, 0.5f, 0.9f, 1.0f };
 	GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	GLfloat mat_shininess[] = { 120.0f };
+	GLfloat mat_shininess[] = { 130.0f };
 
 	glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
 
-	//menu
-
-
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+	glRotatef(rotate_x, 1.0, 0.0, 0.0);
+	glRotatef(rotate_y, 0.0, 1.0, 0.0);
+	glTranslatef(anguloCuboX,0.0,0.0);
+	glTranslatef(0.0, anguloCuboY,0.0);
 	int n, n2, opcion, numero;
 	GLfloat px = 0.0;
 	GLfloat py = 0.0;
@@ -435,86 +421,31 @@ void Objeto::draw()
 	GLfloat nz = 0.0;
 	
 	GLfloat modulo = 0.0;
-	do
-	{
-		cout << "Baloncesto\n";
-		cout << "1.- EMPEZAR\n";
-		cout << "2.- Salir\n";
-		cout << "Dame tu Opcion: ";
-		cin >> opcion;
-		srand(time(NULL));
-		numero = rand()%2;
-		/* Inicio del anidamiento */
-		switch (opcion)
-		{
-		case 1:
-		//	cout << "Valores de Camara\n";
-		//	cout << "X: ";
-		//	cin >> n;
-		//	cout << "Y: ";
-		//	cin >> n2;
-			for (int i = 1; i <= 3; i++)
-			{
-				if(numero==0)
-				{ 
-					switch (i)
-					{
-					case 1:
-						abc[0].setxyz(-0.9, 0.0, 0.1);
-						abc[1].setxyz(-0.4, 1.0, 0.1);
-						abc[2].setxyz(0.0, 1.0, 0.1);
-						abc[3].setxyz(0.1, 0.0, 0.1);
-						nPuntos = 4;
-						break;
-					case 2:
-						abc[0].setxyz(0.1, 0.0, 0.1);
-						abc[1].setxyz(0.2, 0.5, 0.1);
-						abc[2].setxyz(0.3, 0.5, 0.1);
-						abc[3].setxyz(0.4, 0.0, 0.1);
-						nPuntos = 4;
-						break;
-					case 3:
-						abc[0].setxyz(0.4, 0.0, 0.1);
-						abc[1].setxyz(0.5, 0.3, 0.1);
-						abc[2].setxyz(0.6, 0.3, 0.1);
-						abc[3].setxyz(0.7, 0.0, 0.1);
-						nPuntos = 4;
-						break;
-					default:
-						break;
-					}
-				}
-				else
-				{
-					switch (i)
-					{
-					case 1:
-						abc[0].setxyz(-0.9, 0.0, -0.4);
-						abc[1].setxyz(-0.6, 1.0, -0.4);
-						abc[2].setxyz(-0.4, 1.0, -0.4);
-						abc[3].setxyz(-0.1, 0.7, -0.4);
-						nPuntos = 4;
-						break;
-					case 2:
-						abc[0].setxyz(-0.1, 0.7, -0.4);
-						abc[1].setxyz(-0.2, 0.9, -0.4);
-						abc[2].setxyz(-0.2, 0.9, -0.4);
-						abc[3].setxyz(-0.3, 0.0, -0.4);
-						nPuntos = 4;
-						break;
-					case 3:
-						abc[0].setxyz(-0.3, 0.0, -0.4);
-						abc[1].setxyz(-0.4, 0.3, -0.4);
-						abc[2].setxyz(-0.6, 0.3, -0.4);
-						abc[3].setxyz(-0.7, 0.0, -0.4);
-						nPuntos = 4;
-						break;
-					default:
-						break;
-					}
-
-				}
-
+			
+	glBegin(GL_LINES);
+	glColor3f(1.0, 1.0, 1.0);
+	glVertex3f(-1.0, 0.0, 1.0);
+	glVertex3f(-1.0, 0.0, -1.0);
+	glVertex3f(-0.5, 0.0, 1.0);
+	glVertex3f(-0.5, 0.0, -1.0);
+	glVertex3f(0.0, 0.0, 1.0);
+	glVertex3f(0.0, 0.0, -1.0);
+	glVertex3f(0.5, 0.0, 1.0);
+	glVertex3f(0.5, 0.0, -1.0);
+	glVertex3f(1.0, 0.0, 1.0);
+	glVertex3f(1.0, 0.0, -1.0);
+	glVertex3f(1.0, 0.0, -1.0);
+	glVertex3f(-1.0, 0.0, -1.0);
+	glVertex3f(1.0, 0.0, -0.5);
+	glVertex3f(-1.0, 0.0, -0.5);
+	glVertex3f(1.0, 0.0, 0.0);
+	glVertex3f(-1.0, 0.0, 0.0);
+	glVertex3f(1.0, 0.0, 0.5);
+	glVertex3f(-1.0, 0.0, 0.5);
+	glVertex3f(1.0, 0.0, 1.0);
+	glVertex3f(-1.0, 0.0, 1.0);
+	glEnd();
+					
 				GLfloat vPuntos[4];
 				GLfloat vPuntos1[4];
 				GLfloat vPuntos2[4];
@@ -522,173 +453,278 @@ void Objeto::draw()
 				GLfloat vBezier[4];
 				//GLfloat MFINAL[4][4];
 				// dibuja por medio de linea, e incrementa t lentamente para una curva mas detallada 
-				for (double t = 0.0; t <= 1.0; t += 0.009) {
-					Point P = drawBezier(abc[0], abc[1], abc[2], abc[3], t);
-					//	getchar();
-					drawLine(pAnterior, P);
-					vBezier[0] = P.x;
-					vBezier[1] = P.y;
-					vBezier[2] = P.z;
-					vBezier[3] = 1;
-					pAnterior = P;
-					GLfloat MT[4][4] = {
-						{ 1.0f,0.0f,0.0f,vBezier[0] },
-						{ 0.0f,1.0f,0.0f,vBezier[1] },
-						{ 0.0f,0.0f,1.0f,vBezier[2] },
-						{ 0.0f,0.0f,0.0f,vBezier[3] } };
-				
-					
-					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-					glLoadIdentity();
+				for (int i = 0; i < o2.indicesface.size(); i++)
+				{
+					//VERTICE 1
+					vPuntos[0] = o2.vertices[o2.indicesface[i].ind1].x;
+					vPuntos[1] = o2.vertices[o2.indicesface[i].ind1].y;
+					vPuntos[2] = o2.vertices[o2.indicesface[i].ind1].z;
+					vPuntos[3] = 1.0f;
+					//VERTICE 2
+					vPuntos1[0] = o2.vertices[o2.indicesface[i].ind2].x;
+					vPuntos1[1] = o2.vertices[o2.indicesface[i].ind2].y;
+					vPuntos1[2] = o2.vertices[o2.indicesface[i].ind2].z;
+					vPuntos1[3] = 1.0f;
+					//VERTICE 3
+					vPuntos2[0] = o2.vertices[o2.indicesface[i].ind3].x;
+					vPuntos2[1] = o2.vertices[o2.indicesface[i].ind3].y;
+					vPuntos2[2] = o2.vertices[o2.indicesface[i].ind3].z;
+					vPuntos2[3] = 1.0f;
 
-					glRotatef(rotate_x, 1.0, 0.0, 0.0);
-					glRotatef(rotate_y, 0.0, 1.0, 0.0);
+					px = vPuntos1[0] - vPuntos[0];
+					py = vPuntos1[1] - vPuntos[1];
+					pz = vPuntos1[2] - vPuntos[2];
 
-				//	glRotatef(n, 0.0f, 1.0f, 0.0f);
-				//	glRotatef(n2, 1.0f, 0.0f, 0.0f);
+					qx = vPuntos2[0] - vPuntos[0];
+					qy = vPuntos2[1] - vPuntos[1];
+					qz = vPuntos2[2] - vPuntos[2];
 
-				/*	glBegin(GL_LINES);
-					glColor3f(1.0, 1.0, 1.0);
-					glVertex3f(0.0, 1.0, 0.0);
-					glVertex3f(0.0, -1.0, 0.0);
-					glVertex3f(1.0, 0.0, 0.0);
-					glVertex3f(-1.0, 0.0, 0.0);
-					glEnd();*/
+					nx = (py*qz) - (pz*qy);
+					ny = (pz*qx) - (px*qz);
+					nz = (px*qy) - (py*qx);
 
-					
-					
+					modulo = sqrt(nx*nx + ny*ny + nz*nz);
 
-					for (int i = 0; i < o.indicesface.size(); i++)
-					{
+					nx = nx / modulo;
+					ny = ny / modulo;
+					nz = nz / modulo;
 
-						vPuntos[0] = o.vertices[o.indicesface[i].ind1].x;
-						vPuntos[1] = o.vertices[o.indicesface[i].ind1].y;
-						vPuntos[2] = o.vertices[o.indicesface[i].ind1].z;
-						vPuntos[3] = 1.0f;
-
-						vPuntos1[0] = o.vertices[o.indicesface[i].ind2].x;
-						vPuntos1[1] = o.vertices[o.indicesface[i].ind2].y;
-						vPuntos1[2] = o.vertices[o.indicesface[i].ind2].z;
-						vPuntos1[3] = 1.0f;
-
-						vPuntos2[0] = o.vertices[o.indicesface[i].ind3].x;
-						vPuntos2[1] = o.vertices[o.indicesface[i].ind3].y;
-						vPuntos2[2] = o.vertices[o.indicesface[i].ind3].z;
-						vPuntos2[3] = 1.0f;
-
-						MultMatriz4x1(MT, vPuntos2);
-						MultMatriz4x1(MT, vPuntos);
-						MultMatriz4x1(MT, vPuntos1);
-
-						px = vPuntos1[0] - vPuntos[0];
-						py = vPuntos1[1] - vPuntos[1];
-						pz = vPuntos1[2] - vPuntos[2];
-
-						qx = vPuntos2[0] - vPuntos[0];
-						qy = vPuntos2[1] - vPuntos[1];
-						qz = vPuntos2[2] - vPuntos[2];
-
-						nx = (py*qz) - (pz*qy);
-						ny = (pz*qx) - (px*qz);
-						nz = (px*qy) - (py*qx);
-
-						modulo = sqrt(nx*nx + ny*ny + nz*nz);
-
-						nx = nx / modulo;
-						ny = ny / modulo;
-						nz = nz / modulo;
-
-						
-						glBegin(GL_TRIANGLES);
-						glNormal3f(nx, ny, nz);
-						//glColor3f(1.0, 0.5, 0.0);
-						glVertex3f(vPuntos[0], vPuntos[1], vPuntos[2]);
-						glVertex3f(vPuntos1[0], vPuntos1[1], vPuntos1[2]);
-						glVertex3f(vPuntos2[0], vPuntos2[1], vPuntos2[2]);
-						glEnd();
-
-					}
-					for (int i = 0; i < o2.indicesface.size(); i++)
-					{
-						//VERTICE 1
-						vPuntos[0] = o2.vertices[o2.indicesface[i].ind1].x;
-						vPuntos[1] = o2.vertices[o2.indicesface[i].ind1].y;
-						vPuntos[2] = o2.vertices[o2.indicesface[i].ind1].z;
-						vPuntos[3] = 1.0f;
-						//VERTICE 2
-						vPuntos1[0] = o2.vertices[o2.indicesface[i].ind2].x;
-						vPuntos1[1] = o2.vertices[o2.indicesface[i].ind2].y;
-						vPuntos1[2] = o2.vertices[o2.indicesface[i].ind2].z;
-						vPuntos1[3] = 1.0f;
-						//VERTICE 3
-						vPuntos2[0] = o2.vertices[o2.indicesface[i].ind3].x;
-						vPuntos2[1] = o2.vertices[o2.indicesface[i].ind3].y;
-						vPuntos2[2] = o2.vertices[o2.indicesface[i].ind3].z;
-						vPuntos2[3] = 1.0f;
-
-						px = vPuntos1[0] - vPuntos[0];
-						py = vPuntos1[1] - vPuntos[1];
-						pz = vPuntos1[2] - vPuntos[2];
-
-						qx = vPuntos2[0] - vPuntos[0];
-						qy = vPuntos2[1] - vPuntos[1];
-						qz = vPuntos2[2] - vPuntos[2];
-
-						nx = (py*qz) - (pz*qy);
-						ny = (pz*qx) - (px*qz);
-						nz = (px*qy) - (py*qx);
-
-						modulo = sqrt(nx*nx + ny*ny + nz*nz);
-
-						nx = nx / modulo;
-						ny = ny / modulo;
-						nz = nz / modulo;
-
-						/*	cout << "VERTICE NUMERO: " << i <<"\n";
-						cout << "NX: " << nx << "\n";
-						cout << "NY: " << ny << "\n";
-						cout << "NZ: " << nz <<"\n";*/
-
-						//getchar();
-
-						glBegin(GL_TRIANGLES);
-						glNormal3f(nx, ny, nz);
-						//glColor3f(0.0, 0.0, 1.0);
-						glVertex3f(vPuntos[0], vPuntos[1], vPuntos[2]);
-						glVertex3f(vPuntos1[0], vPuntos1[1], vPuntos1[2]);
-						glVertex3f(vPuntos2[0], vPuntos2[1], vPuntos2[2]);
-						glEnd();
-					}
+					glBegin(GL_TRIANGLES);
+					glNormal3f(nx, ny, nz);
+					//glColor3f(0.0, 0.0, 1.0);
+					glVertex3f(vPuntos[0], vPuntos[1], vPuntos[2]);
+					glVertex3f(vPuntos1[0], vPuntos1[1], vPuntos1[2]);
+					glVertex3f(vPuntos2[0], vPuntos2[1], vPuntos2[2]);
+					glEnd();
 				}
-				nPuntos = 0;
-			}
-			
-		
-			glFlush();
-			glutSwapBuffers();
-			break;
-		case 2: cout << "Opcion numero 3";
-			opcion = 2;
-			exit(-1);
-			break;
-		}
-	} while (opcion != 2);
+				if (cambio == 1)
+				{
+					srand(time(NULL));
+					numero = rand() % 2;
+					for (int i = 1; i <= 3; i++)
+					{
+						if (numero == 0)
+						{
+							switch (i)
+							{
+							case 1:
+								cout << "Encesta\n";
+								abc[0].setxyz(-0.9, 0.0, 0.1);
+								abc[1].setxyz(-0.1, 1.0, 0.1);
+								abc[2].setxyz(0.0, 1.0, 0.1);
+								abc[3].setxyz(0.1, 0.0, 0.1);
+								nPuntos = 4;
+								break;
+							case 2:
+								abc[0].setxyz(0.1, 0.0, 0.1);
+								abc[1].setxyz(0.2, 0.5, 0.1);
+								abc[2].setxyz(0.3, 0.5, 0.1);
+								abc[3].setxyz(0.4, 0.0, 0.1);
+								nPuntos = 4;
+								break;
+							case 3:
+								abc[0].setxyz(0.4, 0.0, 0.1);
+								abc[1].setxyz(0.5, 0.3, 0.1);
+								abc[2].setxyz(0.6, 0.3, 0.1);
+								abc[3].setxyz(0.7, 0.0, 0.1);
+								nPuntos = 4;
+								break;
+							default:
+								break;
+							}
+						}
+						else
+						{
+							switch (i)
+							{
+							case 1:
+								cout << "Fallaste\n";
+								abc[0].setxyz(-0.9, 0.0, 0.1);
+								abc[1].setxyz(-0.6, 1.0, 0.1);
+								abc[2].setxyz(-0.4, 1.0, 0.1);
+								abc[3].setxyz(-0.1, 0.7, 0.1);
+								nPuntos = 4;
+								break;
+							case 2:
+								abc[0].setxyz(-0.1, 0.7, 0.1);
+								abc[1].setxyz(-0.2, 0.9, 0.1);
+								abc[2].setxyz(-0.2, 0.9, 0.1);
+								abc[3].setxyz(-0.3, 0.0, 0.1);
+								nPuntos = 4;
+								break;
+							case 3:
+								abc[0].setxyz(-0.3, 0.0, 0.1);
+								abc[1].setxyz(-0.4, 0.3, 0.1);
+								abc[2].setxyz(-0.6, 0.3, 0.1);
+								abc[3].setxyz(-0.7, 0.0, 0.1);
+								nPuntos = 4;
+								break;
+							default:
+								break;
+							}
 
-		//PUNTOS DE REFERENCIA
-}
-//
-//open gl
+						}
+
+						GLfloat vPuntos[4];
+						GLfloat vPuntos1[4];
+						GLfloat vPuntos2[4];
+						Point pAnterior = abc[0];
+						GLfloat vBezier[4];
+						//GLfloat MFINAL[4][4];
+						// dibuja por medio de linea, e incrementa t lentamente para una curva mas detallada 
+						for (double t = 0.0; t <= 1.0; t += 0.009) {
+							Point P = drawBezier(abc[0], abc[1], abc[2], abc[3], t);
+							//	getchar();
+							drawLine(pAnterior, P);
+							vBezier[0] = P.x;
+							vBezier[1] = P.y;
+							vBezier[2] = P.z;
+							vBezier[3] = 1;
+							pAnterior = P;
+							GLfloat MT[4][4] = {
+								{ 1.0f,0.0f,0.0f,vBezier[0] },
+								{ 0.0f,1.0f,0.0f,vBezier[1] },
+								{ 0.0f,0.0f,1.0f,vBezier[2] },
+								{ 0.0f,0.0f,0.0f,vBezier[3] } };
+
+
+							glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+							glLoadIdentity();
+
+							glRotatef(rotate_x, 1.0, 0.0, 0.0);
+							glRotatef(rotate_y, 0.0, 1.0, 0.0);
+
+							
+							glBegin(GL_LINES);
+							//CUADRICULA
+
+							glVertex3f(-1.0, 0.0, 1.0);
+							glVertex3f(-1.0, 0.0, -1.0);
+							glVertex3f(-0.5, 0.0, 1.0);
+							glVertex3f(-0.5, 0.0, -1.0);
+							glVertex3f(0.0, 0.0, 1.0);
+							glVertex3f(0.0, 0.0, -1.0);
+							glVertex3f(0.5, 0.0, 1.0);
+							glVertex3f(0.5, 0.0, -1.0);
+							glVertex3f(1.0, 0.0, 1.0);
+							glVertex3f(1.0, 0.0, -1.0);
+							glVertex3f(1.0, 0.0, -1.0);
+							glVertex3f(-1.0, 0.0, -1.0);
+							glVertex3f(1.0, 0.0, -0.5);
+							glVertex3f(-1.0, 0.0, -0.5);
+							glVertex3f(1.0, 0.0, 0.0);
+							glVertex3f(-1.0, 0.0, 0.0);
+							glVertex3f(1.0, 0.0, 0.5);
+							glVertex3f(-1.0, 0.0, 0.5);
+							glVertex3f(1.0, 0.0, 1.0);
+							glVertex3f(-1.0, 0.0, 1.0);
+							glEnd();
+							for (int i = 0; i < o.indicesface.size(); i++)
+							{
+								vPuntos[0] = o.vertices[o.indicesface[i].ind1].x;
+								vPuntos[1] = o.vertices[o.indicesface[i].ind1].y;
+								vPuntos[2] = o.vertices[o.indicesface[i].ind1].z;
+								vPuntos[3] = 1.0f;
+
+								vPuntos1[0] = o.vertices[o.indicesface[i].ind2].x;
+								vPuntos1[1] = o.vertices[o.indicesface[i].ind2].y;
+								vPuntos1[2] = o.vertices[o.indicesface[i].ind2].z;
+								vPuntos1[3] = 1.0f;
+
+								vPuntos2[0] = o.vertices[o.indicesface[i].ind3].x;
+								vPuntos2[1] = o.vertices[o.indicesface[i].ind3].y;
+								vPuntos2[2] = o.vertices[o.indicesface[i].ind3].z;
+								vPuntos2[3] = 1.0f;
+
+								MultMatriz4x1(MT, vPuntos2);
+								MultMatriz4x1(MT, vPuntos);
+								MultMatriz4x1(MT, vPuntos1);
+
+								px = vPuntos1[0] - vPuntos[0];
+								py = vPuntos1[1] - vPuntos[1];
+								pz = vPuntos1[2] - vPuntos[2];
+
+								qx = vPuntos2[0] - vPuntos[0];
+								qy = vPuntos2[1] - vPuntos[1];
+								qz = vPuntos2[2] - vPuntos[2];
+
+								nx = (py*qz) - (pz*qy);
+								ny = (pz*qx) - (px*qz);
+								nz = (px*qy) - (py*qx);
+
+								modulo = sqrt(nx*nx + ny*ny + nz*nz);
+
+								nx = nx / modulo;
+								ny = ny / modulo;
+								nz = nz / modulo;
+
+								glBegin(GL_TRIANGLES);
+								glNormal3f(nx, ny, nz);
+								//glColor3f(1.0, 0.5, 0.0);
+								glVertex3f(vPuntos[0], vPuntos[1], vPuntos[2]);
+								glVertex3f(vPuntos1[0], vPuntos1[1], vPuntos1[2]);
+								glVertex3f(vPuntos2[0], vPuntos2[1], vPuntos2[2]);
+								glEnd();
+
+							}
+							for (int i = 0; i < o2.indicesface.size(); i++)
+							{
+								//VERTICE 1
+								vPuntos[0] = o2.vertices[o2.indicesface[i].ind1].x;
+								vPuntos[1] = o2.vertices[o2.indicesface[i].ind1].y;
+								vPuntos[2] = o2.vertices[o2.indicesface[i].ind1].z;
+								vPuntos[3] = 1.0f;
+								//VERTICE 2
+								vPuntos1[0] = o2.vertices[o2.indicesface[i].ind2].x;
+								vPuntos1[1] = o2.vertices[o2.indicesface[i].ind2].y;
+								vPuntos1[2] = o2.vertices[o2.indicesface[i].ind2].z;
+								vPuntos1[3] = 1.0f;
+								//VERTICE 3
+								vPuntos2[0] = o2.vertices[o2.indicesface[i].ind3].x;
+								vPuntos2[1] = o2.vertices[o2.indicesface[i].ind3].y;
+								vPuntos2[2] = o2.vertices[o2.indicesface[i].ind3].z;
+								vPuntos2[3] = 1.0f;
+
+								px = vPuntos1[0] - vPuntos[0];
+								py = vPuntos1[1] - vPuntos[1];
+								pz = vPuntos1[2] - vPuntos[2];
+
+								qx = vPuntos2[0] - vPuntos[0];
+								qy = vPuntos2[1] - vPuntos[1];
+								qz = vPuntos2[2] - vPuntos[2];
+
+								nx = (py*qz) - (pz*qy);
+								ny = (pz*qx) - (px*qz);
+								nz = (px*qy) - (py*qx);
+
+								modulo = sqrt(nx*nx + ny*ny + nz*nz);
+
+								nx = nx / modulo;
+								ny = ny / modulo;
+								nz = nz / modulo;
+
+								glBegin(GL_TRIANGLES);
+								glNormal3f(nx, ny, nz);
+								//glColor3f(0.0, 0.0, 1.0);
+								glVertex3f(vPuntos[0], vPuntos[1], vPuntos[2]);
+								glVertex3f(vPuntos1[0], vPuntos1[1], vPuntos1[2]);
+								glVertex3f(vPuntos2[0], vPuntos2[1], vPuntos2[2]);
+								glEnd();
+							}
+						}
+						nPuntos = 0;
+					}
+					cambio == 0;
+				}
+				glFlush();
+				glutSwapBuffers();
+
+			}
 void displayMe()
 {
-		
 		if (bandera == 0)
 		{
 			string nombre = "";
-
-			/*cout << "Dame el nombre del archivo: ";
-			cin >> nombre;
-			nombre = nombre + ".obj";*/
-			//string nombre = "balon2.0.obj";
 			nombre = "balon2.obj";
 			o.archivo = nombre;			
 			o.imprimir(1);//aqui se guardan los datos en los nuevos archivos dependiendo la opcion actualmente los v 
@@ -696,55 +732,134 @@ void displayMe()
 			o.imprimir(2);//aqui se uardan las caras
 			o.ObtenIndicesF();
 			string nombre2 = "";
-
-			/*cout << "Dame el nombre del archivo: ";
-			cin >> nombre;
-			nombre = nombre + ".obj";*/
-			//string nombre = "balon2.0.obj";
 			nombre2 = "canasta3.obj";
 			o2.archivo = nombre2;
 			o2.imprimir(1);//aqui se guardan los datos en los nuevos archivos dependiendo la opcion actualmente los v 
 			o2.GuardaVertices();
 			o2.imprimir(2);//aqui se uardan las caras
 			o2.ObtenIndicesF();
-
 			bandera = 1;
 		}
-
-		//obj.imprimeDatos();
 		if (bandera == 1)
 		{
 			o.draw();
 			bandera = 1;
 		}
 }
-
 void specialKeys(int key, int x, int y) 
 {
-	
-		
 		//  Flecha derecha: aumentar rotación 5 grados
 	if (key == GLUT_KEY_RIGHT)
+	{
 		rotate_y += 5;
-
+		cambio = 0;
+	}
 	//  Flecha izquierda: disminuir rotación 5 grados
 	else if (key == GLUT_KEY_LEFT)
+	{
 		rotate_y -= 5;
-
+		cambio = 0;
+	}
 	else if (key == GLUT_KEY_UP)
+	{
 		rotate_x += 5;
-
+		cambio = 0;
+	}
 	else if (key == GLUT_KEY_DOWN)
+	{
 		rotate_x -= 5;
-
+		cambio = 0;
+	}
+	else if(key==GLUT_KEY_F1)
+	{
+		
+		cambio = 1;
+	}
+	else if(key==GLUT_KEY_F11)
+	{
+		cout << "Ayuda:" << "\n";
+		cout << "F1: Empezar animacion" << "\n";
+		cout << "<- ->: mover mundo" << "\n";
+		cout << "click izquierdo: cambiar color fondo" << "\n";
+		cout << "click derecho: resetear color fondo" << "\n";
+		cambio = 0;
+	}
+	
 	//  Solicitar actualización de visualización
 	glutPostRedisplay();
 	}
 
 //inici0
-void inicio(void)
+void mouse(int button, int state, int mousex, int mousey)
 {
-	
+	int numero3 = 0;
+	srand(time(NULL));
+	numero3 = rand() % 10;
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		switch (numero3)
+		{
+		case 1:
+			R = 255;
+			G = 0;
+			B = 0;
+			break;
+		case 2:
+			R = 0;
+			G = 255;
+			B = 0;
+			break;
+		case 3:
+			R = 0;
+			G = 0;
+			B = 255;
+			break;
+		case 4:
+			R = 255;
+			G = 255;
+			B = 0;
+			break;
+		case 5:
+			R = 255;
+			G = 100;
+			B = 1;
+			break;
+		case 6:
+			R = 170;
+			G = 0;
+			B = 255;
+			break;
+		case 7:
+			R = 255;
+			G = 1;
+			B = 255;
+			break;
+		case 8:
+			R = 0;
+			G = 255;
+			B = 255;
+			break;
+		case 9:
+			R = 0;
+			G = 1;
+			B = 255;
+			break;
+		default:
+			R = 255;
+			G = 255;
+			B = 255;
+			break;
+		}
+		cambio = 0;
+	}
+	else if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)//undo(clear)the drawing
+	{
+		R = 0;
+		B = 0;
+		G = 0;
+		cambio = 0;
+	}
+	glutPostRedisplay();
 }
 int main(int argc, char** argv)
 {	
@@ -752,11 +867,10 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(ANCHO*2,ALTO*2);
 	glutCreateWindow("Baloncesto");
-	//inicio();
 	glutSpecialFunc(specialKeys);
+	glutMouseFunc(mouse);//keyboard event handler
 	glutDisplayFunc(displayMe);
 	glutMainLoop();	
-	
 	return 0;
 
 }
@@ -793,5 +907,3 @@ void MultMatriz4x1(GLfloat m[4][4], GLfloat v[4])
 	v[3] = m[3][0] * v[0] + m[3][1] * v[1] + m[3][2] * v[2] + m[3][3] * v[3];
 }
 
-
-//
