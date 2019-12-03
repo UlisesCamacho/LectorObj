@@ -1,0 +1,14 @@
+﻿  LectorObj.cpp
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(238): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(243): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(348): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(485): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(695): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(769): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(823): warning C4553: '==': el operador no tiene efecto; ¿ha pensado en '='?
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(429): warning C4101: 'opcion': variable local sin referencia
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(429): warning C4101: 'n2': variable local sin referencia
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(482): warning C4101: 'vBezier': variable local sin referencia
+c:\users\ulises\desktop\proyecto\baloncesto\lectorobjs\lectorobj.cpp(429): warning C4101: 'n': variable local sin referencia
+  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\Proyecto\Baloncesto\Debug\LectorObjs.exe
+  LectorObjs.vcxproj -> C:\Users\Ulises\Desktop\Proyecto\Baloncesto\Debug\LectorObjs.pdb (Partial PDB)
